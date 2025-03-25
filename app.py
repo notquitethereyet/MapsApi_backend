@@ -544,6 +544,17 @@ def health_check():
         message="API is running"
     )
 
+@app.route('/health', methods=['GET'])
+def root_health_check():
+    """
+    Root-level health check endpoint for easier testing
+    """
+    return jsonify({
+        "status": "healthy", 
+        "timestamp": datetime.now().isoformat(),
+        "message": "API is running"
+    })
+
 if __name__ == '__main__':
     # Import here to avoid circular import
     from flask import send_from_directory
