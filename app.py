@@ -523,13 +523,19 @@ def upload_distance_matrix():
                 # Ensure pair uniqueness regardless of direction (A->B is same as B->A for TELE)
                 pair_key = tuple(sorted((loc['code'], other_loc['code'])))
                 if pair_key not in tele_pairs_generated:
+                    # Add A->B direction
                     all_results.append({
                         "origin_code": loc['code'], "origin_address": loc['address'],
                         "destination_code": other_loc['code'], "destination_address": other_loc['address'],
                         "transport_mode": "tele", "timeInMinutes": 0
                     })
+                    # Add B->A direction
+                    all_results.append({
+                        "origin_code": other_loc['code'], "origin_address": other_loc['address'],
+                        "destination_code": loc['code'], "destination_address": loc['address'],
+                        "transport_mode": "tele", "timeInMinutes": 0
+                    })
                     tele_pairs_generated.add(pair_key)
-                    # Log the other direction implicitly handled by the check above
         else: # drive or transit
             api_locations.append(loc)
 
