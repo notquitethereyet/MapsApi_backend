@@ -72,3 +72,13 @@ coverage.xml
 # API keys and secrets
 .env
 .flaskenv
+
+# uv package manager
+uv.lock
+.python-version
+pyproject.toml
+main.py
+
+# Nix
+shell.nix
+
